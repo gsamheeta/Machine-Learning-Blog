@@ -10,7 +10,7 @@ description: "Anomaly detection in Machine Learning focuses on identifying rare 
 
 -   Introduction to Anomaly or Outlier Detection.
 
--   Example of Anomaly Detection with real data [Credit Card dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) 
+-   Example of Anomaly Detection 
 
 -   Data Visualization
 
