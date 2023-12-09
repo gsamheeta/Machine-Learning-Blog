@@ -1,0 +1,24 @@
+---
+title: "Samheeta"
+comments: false
+image: profile1.jpg
+about:
+  template: trestles
+  links:
+    - icon: envelope
+      text: Email
+      href: mailto:gsamheeta@vt.edu
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/samheeta-gourammolla-400361251/
+    - icon: github
+      text: Github
+      href: https://github.com/gsamheeta
+---
+
+::: {#hero-heading}
+Hi! My name is Samheeta, and I am from Hyderabad, India.
+
+I am a MEng student in the Computer Science department at Virginia Tech, my academic path is firmly anchored in the dynamic realm of Machine Learning (ML). My studies lies in dissecting and mastering the intricate algorithms and methodologies that constitute the backbone of ML. This intense focus is fueled by my deep interest in the transformative capabilities of ML, particularly in how it can alter the landscape of data analysis and decision-making in diverse sectors. My educational journey is centered around a comprehensive understanding of these complex algorithms, coupled with their practical deployment in various real-life situations.
+
+:::

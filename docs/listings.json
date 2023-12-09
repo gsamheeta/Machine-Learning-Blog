@@ -1,0 +1,17 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/probability/index.html",
+      "/posts/nonlinregression/index.html",
+      "/posts/linearRegression/index.html",
+      "/posts/clustering/index.html",
+      "/posts/classification/index.html",
+      "/posts/anomaly-detection/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": []
+  }
+]

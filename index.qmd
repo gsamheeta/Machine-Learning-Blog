@@ -1,0 +1,64 @@
+---
+title: "Getting to Know about Machine Learning"
+description: "Machine Learning (ML) is an innovative and dynamic field of artificial intelligence that empowers computers to learn and make decisions from data without explicit programming. Combining elements of computer science and statistical data analysis, ML enables algorithms to adapt through experiences, mainly using techniques like supervised, unsupervised, and reinforcement learning. Its applications span various sectors, from personalized recommendations in digital platforms to complex tasks such as autonomous driving, medical diagnostics, and financial modeling. The field thrives on the growing availability of big data and advancements in computational power, continually evolving to not only refine existing technologies but also innovate new forms of machine-human interactions. This constant development positions ML as a key driver in the technological landscape, revolutionizing how we interact with and benefit from data-driven systems."
+
+listing:
+  - id: posts-en
+    contents: posts/**/en/*.qmd
+    type: default
+    fields: [image, date, title, subtitle, categories, author, reading-time]
+    sort: "date desc"
+    #categories: cloud
+    sort-ui: false
+    filter-ui: false
+    page-size: 3
+  - id: posts-ptbr
+    contents: posts/**/pt/*.qmd
+    type: default
+    fields: [image, date, title, subtitle, categories, author, reading-time]
+    sort: "date desc"
+    #categories: cloud
+    sort-ui: false
+    filter-ui: false
+    page-size: 3   
+  - id: talks
+    contents: talks/{pt,es,en}/*/index.qmd
+    type: grid
+    fields: [image, date, title, subtitle]
+    sort: "date desc"
+    #categories: cloud
+    sort-ui: false
+    filter-ui: false
+    page-size: 3  
+  - id: posts
+    contents: posts/**/*/index.qmd
+    type: default
+    fields: [image, date, title, subtitle, categories, author, reading-time, description]
+    sort:
+    - "date desc"
+    - "title desc"
+    categories: true
+    sort-ui: false
+    filter-ui: false
+    page-size: 3          
+  - id: posts-es
+    contents: posts/**/es/*.qmd
+    type: default
+    fields: [image, date, title, subtitle, categories, author, reading-time]
+    sort: "date desc"
+    #categories: cloud
+    sort-ui: false
+    filter-ui: false
+    page-size: 3       
+page-layout: full
+title-block-banner: false
+comments: false
+toc: true
+---
+
+![](ml-e1610553826718.jpg){fig-align="center" width="644" height="277"}
+
+## Machine Learning Blogs:
+
+::: {#posts}
+:::

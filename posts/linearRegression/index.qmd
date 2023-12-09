@@ -1,0 +1,239 @@
+---
+title: "Linear Regression"
+author: "Samheeta"
+date: "2023-12-6"
+description: "Linear Regression is a supervised learning algorithm used for modeling the relationship between a dependent variable and one or more independent variables by fitting a linear equation to observed data."
+---
+
+# ![Linear Regression](LR.png){width="650"}
+
+**Contents:**
+
+-   What Is Linear Regression?
+
+-   Example of Linear Regression with [Real estate price prediction dataset](https://www.kaggle.com/datasets/quantbruce/real-estate-price-prediction).
+
+-   Data Exploration
+
+-   Model Evaluation
+
+-   Residual Analysis
+
+# Linear Regression
+
+Linear regression is a fundamental statistical and machine learning technique used to predict a continuous outcome variable (dependent variable) based on one or more predictor variables (independent variables). The relationship between the predictors and the outcome is assumed to be linear. The basic form of a linear regression model with one predictor is y = B0 + B1 * x, where y is the dependent variable, x is the independent variable, B0 is the intercept, and B1 is the slope coefficient.
+
+In the context of machine learning, particularly with the use of Python, the scikit-learn library is often utilized for implementing linear regression models. Scikit-learn is a robust and popular library that provides efficient tools for data mining and data analysis, including linear regression.
+
+
+#### In the provided example, linear regression is applied to predict real estate prices based on various features such as house age, proximity to the nearest MRT station, number of convenience stores, and geographic coordinates. The typical machine learning workflow is followed:
+
+- Data Preparation: Libraries like pandas, numpy, and scikit-learn are used to load and manipulate the dataset.
+
+- Exploratory Data Analysis (EDA): Correlations between variables are analyzed using tools like df.corr() and visualized with sns.pairplot.
+
+- Feature Selection and Model Training: The dataset is split into training and testing sets. A linear regression model is trained using scikit-learn's LinearRegression().
+
+- Model Evaluation: Performance metrics like MAE, MSE, and RMSE are calculated to assess the model's accuracy in making predictions.
+
+- Residual Analysis: Residuals (differences between actual and predicted values) are examined. A clear pattern in the residual plot suggests that linear regression may not be suitable due to potential non-linearity, outliers, or influential data points.
+
+## Example for Linear Regression
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import hvplot.pandas
+
+from sklearn.model_selection import train_test_split
+
+from sklearn import metrics
+
+from sklearn.linear_model import LinearRegression
+
+%matplotlib inline
+
+```
+
+```{python}
+df=pd.read_csv('C:/Users/Lenovo/Desktop/MLBlog-gh-pages/posts/linearRegression/Real estate.csv')
+
+```
+
+```{python}
+
+df.head()
+
+```
+
+```{python}
+df.shape
+```
+
+
+
+```{python}
+df.info()
+
+```
+
+```{python}
+
+df.corr()
+
+```
+
+```{python}
+sns.heatmap(df.corr(), annot=True,cmap='Reds')
+
+```
+
+## Exploratory Data Analysis (EDA)
+
+```{python}
+sns.pairplot(df)
+```
+<seaborn.axisgrid.PairGrid at 0x7fcf18e2e910>
+```{python}
+X=df.drop('Y house price of unit area', axis=1)
+
+y=df['X4 number of convenience stores']
+```
+
+```{python}
+print("X=",X.shape,"\ny=", y.shape)
+
+```
+
+
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
+
+```
+
+```{python}
+X_train.shape
+```
+
+```{python}
+X_test.shape
+```
+
+Linear Regression
+
+```{python}
+model = LinearRegression()
+
+```
+
+```{python}
+model.fit(X_train, y_train)
+
+```
+
+```{python}
+model.coef_
+```
+
+```{python}
+pd.DataFrame(model.coef_, X.columns, columns=['Coedicients'])
+```
+
+## Predictions from our Model
+
+```{python}
+y_pred = model.predict(X_test)
+
+```
+
+## Regression Evaluation Metrics
+Here are three common evaluation metrics for regression problems:
+
+- Mean Absolute Error (MAE) is the mean of the absolute value of the errors:
+1n∑i=1n|yi−y^i|
+ 
+- Mean Squared Error (MSE) is the mean of the squared errors:
+1n∑i=1n(yi−y^i)2
+ 
+- Root Mean Squared Error (RMSE) is the square root of the mean of the squared errors:
+1n∑i=1n(yi−y^i)2−−−−−−−−−−−−√
+ 
+## Comparing these metrics:
+
+- MAE is the easiest to understand, because it's the average error.
+- MSE is more popular than MAE, because MSE "punishes" larger errors, which tends to be useful in the real world.
+- RMSE is even more popular than MSE, because RMSE is interpretable in the "y" units.
+All of these are loss functions, because we want to minimize them.
+
+```{python}
+MAE= metrics.mean_absolute_error(y_test, y_pred)
+MSE=metrics.mean_squared_error(y_test, y_pred)
+RMSE= np.sqrt(MSE)
+```
+
+
+
+```{python}
+MAE
+```
+
+```{python}
+MSE
+```
+
+```{python}
+RMSE
+
+```
+
+```{python}
+df['X4 number of convenience stores'].mean()
+
+```
+
+## Residual Histogram
+- Often for Linear Regression it is a good idea to separately evaluate residuals
+(y−y^)
+ 
+and not just calculate performance metrics (e.g. RMSE).
+
+- Let's explore why this is important...
+
+- The residual eerors should be random and close to a normal distribution.
+
+# ![Linear Regression](image1.png){width="350"}
+# ![Linear Regression](image2.png){width="500"}
+
+```{python}
+test_residual= y_test - y_pred
+
+```
+
+```{python}
+pd.DataFrame({'Error Values': (test_residual)}).hvplot.kde()
+
+```
+
+
+
+```{python}
+sns.displot(test_residual, bins=25, kde=True)
+```
+<seaborn.axisgrid.FacetGrid at 0x7fcef584d6d0>
+
+
+
+## Residual plot shows residual error VS. true y value.
+
+```{python}
+sns.scatterplot(x=y_test, y=test_residual)
+
+plt.axhline(y=0, color='r', ls='--')
+
+```
+
+## Residualplot showing a clear pattern, indicating Linear Regression no valid!
+
+In summary, this example demonstrates the application of linear regression in predicting real estate prices while emphasizing the importance of each step in the machine learning process, from data preparation to model evaluation and residual analysis.
